@@ -279,7 +279,9 @@
           "requests": {
             "storage": "${VOLUME_CAPACITY}"
           }
-        }
+        },
+        "storageClassName": "manual",
+        "volumeName": "pv-volume-2"
       }
     },
     {
@@ -349,6 +351,9 @@
             }
           },
           "spec": {
+            "serviceAccount": "postgres",
+            "serviceAccountName": "postgres",
+            "securityContext": {},
             "volumes": [
               {
                 "name": "${DATABASE_SERVICE_NAME}-data",
@@ -359,6 +364,9 @@
             ],
             "containers": [
               {
+                "securityContext": {
+                  "privileged": true
+                },
                 "name": "postgresql",
                 "image": " ",
                 "ports": [
